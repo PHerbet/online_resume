@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# variable db and security key 
+connection.py
+
+# media
+media
