@@ -52,7 +52,7 @@ class Education(models.Model):
 class Realisation(models.Model):
     name_realisation = models.CharField(max_length=25)
     description = models.TextField()
-    git_link = models.SlugField(max_length=200)
+    git_link = models.CharField(max_length=200)
     icon_realisation = models.ImageField(
         upload_to="icon_realisation", 
         blank=True, 
@@ -64,7 +64,7 @@ class Realisation(models.Model):
 
 class Ressource(models.Model):
     name_ressource = models.CharField(max_length=20)
-    url_ressource = models.SlugField(max_length=200)
+    url_ressource = models.CharField(max_length=200)
     icon_ressource = models.ImageField(
         upload_to="icon_ressource", 
         blank=True, 
