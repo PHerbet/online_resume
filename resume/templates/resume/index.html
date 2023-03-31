@@ -1,12 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- section à propos-->
+    <section>
+        <div>
+            <h1>
+                Priscillien Herbet
+            </h1>
+            <h4>
+                Développeur Informatique
+            </h4>
+            <div>
+                <div>
+                    <h6>
+                        A propos:
+                    </h6>
+                    <p>
+                    {% lorem 2 b random %}
+                    </p>
+                </div>
+                <img src="" alt="photo de moi">
+            </div>
+        </div>
+    </section>
+    <!-- section ressources et compétences --> 
+    <section>
+        <div><!-- ressources -->
+            {% for ressource in ressources %}
+                <h5> {{ ressource.name_ressource }} </h5>
+                    <img src="{{ ressource.icon_ressource.url }}" alt="logo du site ">
+                    <a href="{{ressource.url_ressource}}">github</a>
+            {% endfor %}
+        </div>
+        <div><!-- compétences -->
+            {% for type_competence in type_competences %}
+                <h5>{{ type_competence }}</h5>
+                    {% for competence in competence %}
+            {% endfor %}
+        </div>
+    </section>
     {% if experiences %}
     <ul>
     {% for experience in experiences %}
@@ -19,5 +51,5 @@
 {% else %}
     <p>No experience are available.</p>
 {% endif %}
-</body>
-</html>
+
+{% endblock %}
