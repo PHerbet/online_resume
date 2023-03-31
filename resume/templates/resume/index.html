@@ -35,21 +35,31 @@
         <div><!-- compétences -->
             {% for type_competence in type_competences %}
                 <h5>{{ type_competence }}</h5>
-                    {% for competence in competence %}
+                    {% for competence in competences %}
+                        {% if competence.type_competence == type_competence %}
+                            <p>{{ competence.name_competence}}</p>
+                            <img src="{{ competence.imageUrl }}" >
+                        {% endif %}
+                    {% endfor %}
             {% endfor %}
         </div>
     </section>
-    {% if experiences %}
-    <ul>
-    {% for experience in experiences %}
-        <li>{{ experience.position }}</li>
-            {% if experience.icon_company %}
-                <img src="{{ experience.icon_company.url }}" alt="logo de l'entreprise">
-            {% endif %}
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No experience are available.</p>
-{% endif %}
+    <!-- section diplôme et expériences professionnelle-->
+    <section>
+        <div><!-- diplôme -->
+            {% for education in educations  %}
+                <h5> {{ education.title }} </h5>
+                    <p>{{ education.obtention_year }}</p>
+            {% endfor %}
+        </div>
+        <div>
+            {% for experience in experiences %}
+            <h5>{{ experience.position }}</h5>
+            <h6>{{ experience.company }} - {{ experience.period }}</h6>
+            <p> {{ experience.mission }} </p>
+            <img src="{{ experience.imageUrl }}" alt="logo de l'entreprise">
+            {% endfor %}
+        </div>
+    </section>
 
 {% endblock %}

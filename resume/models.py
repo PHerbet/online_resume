@@ -15,6 +15,12 @@ class Experience(models.Model):
     
     def __str__(self):
         return self.position
+    def imageUrl(self):
+        try:
+            url = self.icon_company.url
+        except:
+            url=''
+        return url
 
 
 class Type_competence(models.Model):
@@ -39,6 +45,12 @@ class Competence(models.Model):
 
     def __str__(self):
         return self.name_competence
+    def imageUrl(self):
+        try:
+            url = self.icon_competence.url
+        except:
+            url=''
+        return url
 
 
 class Education(models.Model):
