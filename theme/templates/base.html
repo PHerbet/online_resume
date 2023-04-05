@@ -1,0 +1,24 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>PHerbet</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% tailwind_css %}
+	</head>
+
+	<body>
+		<header>
+			<h1>Super Header à définir </h1>
+		</header>
+			<main>
+				{% block content %}
+				{% endblock %}
+			</main>
+		<footer>
+			<h1> Super Footer à créer  mettre le type d'hébergement du site ?</h1>
+		</footer>
+	</body>
+</html>

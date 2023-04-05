@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'tailwind',
+    'theme',
     'resume.apps.ResumeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -120,3 +122,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+#  Ajout de Tailwind css 
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS ='127.0.0.1'
