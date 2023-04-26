@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- section à propos -->
+<!-- section à propos et ressources-->
     <section class="border-solid border-2 border-black">
+        <!-- à propos -->
         <div class="flex flex-col-reverse md:flex-row">
             <div class="flex flex-col space-y-2 m-2 justify-around">
                     <p class="text-7xl text-center font-bold">Priscillien Herbet</p>
@@ -28,26 +29,25 @@
             </div> 
         </div>
     </section>
-    <!-- bloc expériences/compétences/portfolio -->
-    <div class="grid grid-cols-3">
-        <!-- section ressources et compétences --> 
-        <section class="border-solid border-2 border-blue-200 col-span-2">
-            <div><!-- compétences -->
-                {% for type_competence in type_competences %}
-                    <p>{{ type_competence }}</p>
-                        {% for competence in competences %}
-                            {% if competence.type_competence == type_competence %}
-                                <p>{{ competence.name_competence}}</p>
-                                <div class="h-6 w-6">
-                                    <img src="{{ competence.imageUrl }}" >
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                {% endfor %}
+    <!-- section compétences et expériences --> 
+    <section class="flex flex-col md:flex-row m:w-full">
+        <div class="flex flex-row md:w-2/3 border-solid border-2  border-blue-200"><!-- compétences -->
+            {% for type_competence in type_competences %}
+            <div class="">
+                <p>{{ type_competence }}</p>
+                    {% for competence in competences %}
+                        {% if competence.type_competence == type_competence %}
+                            <p>{{ competence.name_competence}}</p>
+                            <div class="h-6 w-6">
+                                <img src="{{ competence.imageUrl }}" >
+                            </div>
+                        {% endif %}
+                    {% endfor %}
             </div>
-        </section>
-        <!-- section diplômes et expériences professionnelles -->
-        <section class="border-solid border-2 border-yellow-200 col-end-4 row-span-2">
+            {% endfor %}
+        </div>
+    <!-- diplômes et expériences professionnelles -->
+        <div class="md:w-1/3 border-solid border-2 border-yellow-200">
             <!-- diplômes -->
             <div>
                 {% for education in educations  %}
@@ -71,9 +71,10 @@
                 </div>
                 {% endfor %}
             </div>
-        </section>
+        </div>
+    </section>
         <!-- section portfolio -->
-        <section class="border-solid border-2 border-red-200 col-span-2">
+        <section class="border-solid border-2 border-red-200">
             <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sapiente iste ipsum et non ipsa blanditiis minus nisi. Sed optio autem temporibus nesciunt itaque neque saepe expedita quam sapiente ipsam.</div>
         </section>
     </div>
