@@ -1,73 +1,81 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- section à propos-->
-    <section class="border-solid border-2 border-black basis-1/4">
-        <div>
-            <div >
-                <div>
-                    <h1>
-                        Priscillien Herbet
-                    </h1>
+<!-- section à propos -->
+    <section class="border-solid border-2 border-black">
+        <div class="flex flex-col-reverse md:flex-row">
+            <div class="flex flex-col space-y-2 m-2 justify-around">
+                    <p class="text-7xl text-center font-bold">Priscillien Herbet</p>
+                    <p class="text-xl text-center italic">Développeur Informatique</p>
+                <div class="flex flex-col justify-between">
+                    <p>A propos:</p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus amet sunt, maiores iusto maxime quia mollitia ducimus eius nobis fugiat quasi aliquam, impedit aut necessitatibus at officia qui molestias dignissimos?</p>
                 </div>
-                <div>
-                    <h4>
-                        Développeur Informatique
-                    </h4>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <h6>
-                        A propos:
-                    </h6>
-                    <p>
-                    {% lorem 2 b random %}
-                    </p>
-                </div>
-                <div>
-                    <img src="" alt="photo de moi">
-                </div> 
-            </div>
-        </div>
-    </section>
-    <!-- section ressources et compétences --> 
-    <section class="border-solid border-2 border-indigo-200 basis-1/2">
-        <div><!-- ressources -->
-            {% for ressource in ressources %}
-                <h5> {{ ressource.name_ressource }} </h5>
-                    <img src="{{ ressource.icon_ressource.url }}" alt="logo du site ">
-                    <a href="{{ressource.url_ressource}}">github</a>
-            {% endfor %}
-        </div>
-        <div><!-- compétences -->
-            {% for type_competence in type_competences %}
-                <h5>{{ type_competence }}</h5>
-                    {% for competence in competences %}
-                        {% if competence.type_competence == type_competence %}
-                            <p>{{ competence.name_competence}}</p>
-                            <img src="{{ competence.imageUrl }}" >
-                        {% endif %}
+                <!-- ressources -->
+                <div class="flex flex-row justify-around">
+                    {% for ressource in ressources %}
+                        <div class="flex flex-row">
+                            <div class="h-6 w-6">
+                                <img src="{{ ressource.icon_ressource.url }}" alt="logo du site ">
+                            </div>
+                                <a href="{{ ressource.url_ressource }}">{{ ressource.name_ressource }}</a>
+                        </div>
                     {% endfor %}
-            {% endfor %}
+                </div>
+            </div>
+            <div class="flex justify-center items-center">
+                <img src="media\img\profil.jpg" alt="photo de moi" class="rounded-full w-60 h-60 md:h-auto md:w-auto p-6">
+            </div> 
         </div>
     </section>
-    <!-- section diplôme et expériences professionnelle-->
-    <section class="border-solid border-2 border-yellow-200 basis-1/4">
-        <div><!-- diplôme -->
-            {% for education in educations  %}
-                <h5> {{ education.title }} </h5>
-                    <p>{{ education.obtention_year }}</p>
-            {% endfor %}
-        </div>
-        <div>
-            {% for experience in experiences %}
-            <h5>{{ experience.position }}</h5>
-            <h6>{{ experience.company }} - {{ experience.period }}</h6>
-            <p> {{ experience.mission }} </p>
-            <img src="{{ experience.imageUrl }}" alt="logo de l'entreprise">
-            {% endfor %}
-        </div>
-    </section>
+    <!-- bloc expériences/compétences/portfolio -->
+    <div class="grid grid-cols-3">
+        <!-- section ressources et compétences --> 
+        <section class="border-solid border-2 border-blue-200 col-span-2">
+            <div><!-- compétences -->
+                {% for type_competence in type_competences %}
+                    <p>{{ type_competence }}</p>
+                        {% for competence in competences %}
+                            {% if competence.type_competence == type_competence %}
+                                <p>{{ competence.name_competence}}</p>
+                                <div class="h-6 w-6">
+                                    <img src="{{ competence.imageUrl }}" >
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                {% endfor %}
+            </div>
+        </section>
+        <!-- section diplômes et expériences professionnelles -->
+        <section class="border-solid border-2 border-yellow-200 col-end-4 row-span-2">
+            <!-- diplômes -->
+            <div>
+                {% for education in educations  %}
+                    <p> {{ education.title }} </p>
+                        <p>{{ education.obtention_year }}</p>
+                {% endfor %}
+            </div>
+            <!-- expériences pro -->
+            <div>
+                {% for experience in experiences %}
+                <div class="flex flex-row">
+                    <div class="h-6 w-6">
+                        <img src="{{ experience.imageUrl }}" alt="logo de l'entreprise">
+                    </div>
+                    <div >
+                        <p>{{ experience.period }}</p>
+                        <p>{{ experience.company }}</p>
+                        <p>{{ experience.position }}</p>
+                        <p class="hidden"> {{ experience.mission }} </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        <!-- section portfolio -->
+        <section class="border-solid border-2 border-red-200 col-span-2">
+            <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sapiente iste ipsum et non ipsa blanditiis minus nisi. Sed optio autem temporibus nesciunt itaque neque saepe expedita quam sapiente ipsam.</div>
+        </section>
+    </div>
 
 {% endblock %}
